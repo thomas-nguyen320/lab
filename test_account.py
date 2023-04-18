@@ -36,9 +36,6 @@ class Test:
         assert self.account2.deposit(-1) is False
         assert self.account2.get_balance() == 40.5
 
-
-
-
     def test_withdraw(self):
         assert self.account1.withdraw(5) == True
         assert self.account1.get_balance() == 5
