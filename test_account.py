@@ -37,29 +37,34 @@ class Test:
         assert self.account2.get_balance() == 40.5
 
     def test_withdraw(self):
-        assert self.account1.withdraw(5) == True
+        assert self.account1.withdraw(5) is True
         assert self.account1.get_balance() == 5
-        assert self.account2.withdraw(5) == True
+        assert self.account2.withdraw(5) is True
         assert self.account2.get_balance() == 15
 
-        assert self.account1.withdraw(2.5) == True
+        assert self.account1.withdraw(2.5) is True
         assert self.account1.get_balance() == 2.5
-        assert self.account2.withdraw(2.5) == True
+        assert self.account2.withdraw(2.5) is True
         assert self.account2.get_balance() == 12.5
 
-        assert self.account1.withdraw(0) == False
+        assert self.account1.withdraw(0) is False
         assert self.account1.get_balance() == 2.5
-        assert self.account2.withdraw(0) == False
+        assert self.account2.withdraw(0) is False
         assert self.account2.get_balance() == 12.5
 
-        assert self.account1.withdraw(-1) == False
+        assert self.account1.withdraw(-1) is False
         assert self.account1.get_balance() == 2.5
-        assert self.account2.withdraw(-1) == False
+        assert self.account2.withdraw(-1) is False
         assert self.account2.get_balance() == 12.5
 
-        assert self.account1.withdraw(2.5) == True
-        assert self.account2.withdraw(12.5) == True
+        assert self.account1.withdraw(2.5) is True
         assert self.account1.get_balance() == 0
+        assert self.account2.withdraw(12.5) is True
+        assert self.account2.get_balance() == 0
+
+        assert self.account1.withdraw(100) is False
+        assert self.account1.get_balance() == 0
+        assert self.account2.withdraw(100) is False
         assert self.account2.get_balance() == 0
 
 
