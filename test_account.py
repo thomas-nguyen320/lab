@@ -57,4 +57,9 @@ class Test:
         assert self.account2.withdraw(-1) == False
         assert self.account2.get_balance() == 12.5
 
+        assert self.account1.withdraw(2.5) == True
+        assert self.account2.withdraw(12.5) == True
+        assert self.account1.get_balance() == 0
+        assert self.account2.get_balance() == 0
+
 
