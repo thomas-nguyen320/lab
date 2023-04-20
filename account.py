@@ -1,13 +1,12 @@
 class Account:
-    def __init__(self, name,balance = 0) -> None:
+    def __init__(self, name: str) -> None:
         '''
         Constructor to create initial state of a Account object.
 
         :param name: Person's first name
-        :param balance: Person's account balance
         '''
         self.__account_name = name
-        self.__account_balance = balance
+        self.__account_balance = 0
 
     def deposit(self,amount: float) -> bool:
         '''

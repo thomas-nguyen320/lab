@@ -2,69 +2,38 @@ from account import *
 
 class Test:
     def setup_method(self):
-        self.account1 = Account('Jane', 10)
-        self.account2 = Account('John', 20)
+        self.a1 = Account('John')
 
     def teardown_method(self):
-        del self.account1
-        del self.account2
+        del self.a1
 
     def test_init(self):
-        assert self.account1.get_name() == 'Jane'
-        assert self.account2.get_name() == 'John'
-        assert self.account1.get_balance() == 10
-        assert self.account2.get_balance() == 20
+        assert self.a1.get_name() == 'John'
+        assert self.a1.get_balance() == 0
 
     def test_deposit(self):
-        assert self.account1.deposit(10) is True
-        assert self.account1.get_balance() == 20
-        assert self.account2.deposit(10) is True
-        assert self.account2.get_balance() == 30
+        assert self.a1.deposit(-1.5) is False
+        assert self.a1.get_balance() == 0
 
-        assert self.account1.deposit(10.5) is True
-        assert self.account1.get_balance() == 30.5
-        assert self.account2.deposit(10.5) is True
-        assert self.account2.get_balance() == 40.5
+        assert self.a1.deposit(0) is False
+        assert self.a1.get_balance() == 0
 
-        assert self.account1.deposit(0) is False
-        assert self.account1.get_balance() == 30.5
-        assert self.account2.deposit(0) is False
-        assert self.account2.get_balance() == 40.5
-
-        assert self.account1.deposit(-1) is False
-        assert self.account1.get_balance() == 30.5
-        assert self.account2.deposit(-1) is False
-        assert self.account2.get_balance() == 40.5
+        assert self.a1.deposit(1.5) is True
+        assert self.a1.get_balance() == 1.5
 
     def test_withdraw(self):
-        assert self.account1.withdraw(5) is True
-        assert self.account1.get_balance() == 5
-        assert self.account2.withdraw(5) is True
-        assert self.account2.get_balance() == 15
 
-        assert self.account1.withdraw(2.5) is True
-        assert self.account1.get_balance() == 2.5
-        assert self.account2.withdraw(2.5) is True
-        assert self.account2.get_balance() == 12.5
+        assert self.a1.withdraw(-1.5) is False
+        assert self.a1.get_balance() == 0
 
-        assert self.account1.withdraw(0) is False
-        assert self.account1.get_balance() == 2.5
-        assert self.account2.withdraw(0) is False
-        assert self.account2.get_balance() == 12.5
+        assert self.a1.withdraw(0) is False
+        assert self.a1.get_balance() == 0
 
-        assert self.account1.withdraw(-1) is False
-        assert self.account1.get_balance() == 2.5
-        assert self.account2.withdraw(-1) is False
-        assert self.account2.get_balance() == 12.5
+        assert self.a1.withdraw(100) is False
+        assert self.a1.get_balance() == 0
 
-        assert self.account1.withdraw(2.5) is True
-        assert self.account1.get_balance() == 0
-        assert self.account2.withdraw(12.5) is True
-        assert self.account2.get_balance() == 0
+        self.a1.deposit(1.5)
 
-        assert self.account1.withdraw(100) is False
-        assert self.account1.get_balance() == 0
-        assert self.account2.withdraw(100) is False
-        assert self.account2.get_balance() == 0
-
+        assert self.a1.withdraw(1) is True
+        assert self.a1.get_balance() == 0.5
 
